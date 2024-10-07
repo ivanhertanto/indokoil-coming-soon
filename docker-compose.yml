@@ -17,7 +17,7 @@ services:
       - traefik.http.routers.comingSoon.tls.certresolver=lets-encrypt
       - traefik.port=80
     volumes:
-      - $PWD:/usr/local/apache2/htdocs
+      - ./public/:/usr/local/apache2/htdocs
     networks:
       - web
       - internal
