@@ -1,0 +1,23 @@
+version: "3"
+
+networks:
+  web:
+    external: true
+  internal:
+    external: false
+
+services:
+  comingSoon:
+    image: httpd:alpine
+    container_name: Indokoil-comingSoon
+    restart: always
+    labels:
+      - traefik.http.routers.comingSoon.rule=Host(`indokoil.com`, `www.indokoil.com`)
+      - traefik.http.routers.comingSoon.tls=true
+      - traefik.http.routers.comingSoon.tls.certresolver=lets-encrypt
+      - traefik.port=80
+    volumes:
+      - $PWD:/usr/local/apache2/htdocs
+    networks:
+      - web
+      - internal
